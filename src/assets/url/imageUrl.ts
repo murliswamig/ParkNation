@@ -7,4 +7,11 @@ export const ImageUrlConstants = {
     backBtn: require('../images/backBtn.png'),
     forgotIcon: require('../images/forgotIcon.png'),
     dummyProfile1: require('../images/dummyProfile1.png'),
+    home: require('../images/home.png'),
+    phone: require('../images/phone.png'),
+    invoice: require('../images/invoice.png'),
+    more: require('../images/more.png'),
+    back_icon: require('../images/back_icon.png'),
+    bell: require('../images/bell.png'),
+    onlinePayment:require('../images/online-payment.png'),
 };

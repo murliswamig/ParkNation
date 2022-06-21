@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
   activefIconTitle: {
     color: '#7DC23B',
   },
+  fIconTitle:{
+    fontSize: 13
+  }
 });
 
 export default styles;

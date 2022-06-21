@@ -13,39 +13,38 @@ const Footer = ({name, tabClick}) => {
     return (
         <View style={styles.footerBg}>
             <TouchableOpacity style={styles.footBtnBox} onPress={() => tabPress('home')}>
-                <View style={[styles.activeLine, {backgroundColor: name === "home" ? '#7DC23B' : '#fff'}]}/>
+                <View style={[styles.activeLine, {backgroundColor: name === "home" ? colors.primary : '#fff'}]}/>
                 <View style={styles.iconBox}>
-                    <Image source={ImageUrlConstants.fIcon2}
+                    <Image source={ImageUrlConstants.home}
                            style={[{tintColor: name === "home" ? colors.primary : 'grey'}]}/>
                 </View>
                 <Text style={[styles.fIconTitle, {color: name === "home" ? colors.primary : 'grey'}]}>Home</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.footBtnBox} onPress={() => tabPress('MyStreeks')}>
-                <View style={[styles.activeLine, {backgroundColor: name === "MyStreeks" ? '#7DC23B' : '#fff'}]}/>
+            <TouchableOpacity style={styles.footBtnBox} onPress={() => tabPress('Mobile')}>
+                <View style={[styles.activeLine, {backgroundColor: name === "Mobile" ? colors.primary : '#fff'}]}/>
                 <View style={styles.iconBox}>
-                    <Image source={ImageUrlConstants.fIcon2}
-                           style={[{tintColor: name === "MyStreeks" ? colors.primary : 'grey'}]}/>
+                    <Image source={ImageUrlConstants.phone}
+                           style={[{tintColor: name === "Mobile" ? colors.primary : 'grey'}]}/>
                 </View>
-                <Text style={[styles.fIconTitle, {color: name === "MyStreeks" ? colors.primary : 'grey'}]}>My
-                    Profile</Text>
+                <Text style={[styles.fIconTitle, {color: name === "Mobile" ? colors.primary : 'grey'}]}>Mobile Pass</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.footBtnBox} onPress={() => tabPress('RecentHistory')}>
-                <View style={[styles.activeLine, {backgroundColor: name === "RecentHistory" ? '#7DC23B' : '#fff'}]}/>
+            <TouchableOpacity style={styles.footBtnBox} onPress={() => tabPress('Invoice')}>
+                <View style={[styles.activeLine, {backgroundColor: name === "Invoice" ? colors.primary : '#fff'}]}/>
                 <View style={styles.iconBox}>
-                    <Image source={ImageUrlConstants.fIcon2}
-                           style={[{tintColor: name === "RecentHistory" ? colors.primary : 'grey'}]}/>
+                    <Image source={ImageUrlConstants.invoice}
+                           style={[{tintColor: name === "Invoice" ? colors.primary : 'grey'}]}/>
                 </View>
                 <Text
-                    style={[styles.fIconTitle, {color: name === "RecentHistory" ? colors.primary : 'grey'}]}>History</Text>
+                    style={[styles.fIconTitle, {color: name === "Invoice" ? colors.primary : 'grey'}]}>Invoices</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.footBtnBox} onPress={() => tabPress('UpcomingStreek')}>
-                <View style={[styles.activeLine, {backgroundColor: name === "UpcomingStreek" ? '#7DC23B' : '#fff'}]}/>
+            <TouchableOpacity style={styles.footBtnBox} onPress={() => tabPress('More')}>
+                <View style={[styles.activeLine, {backgroundColor: name === "More" ? colors.primary : '#fff'}]}/>
                 <View style={styles.iconBox}>
-                    <Image source={ImageUrlConstants.fIcon2}
-                           style={[{tintColor: name === "UpcomingStreek" ? colors.primary : 'grey'}]}/>
+                    <Image source={ImageUrlConstants.more}
+                           style={[{tintColor: name === "More" ? colors.primary : 'grey'}]}/>
                 </View>
                 <Text
-                    style={[styles.fIconTitle, {color: name === "UpcomingStreek" ? colors.primary : 'grey'}]}>Setting</Text>
+                    style={[styles.fIconTitle, {color: name === "More" ? colors.primary : 'grey'}]}>More</Text>
             </TouchableOpacity>
         </View>
     );

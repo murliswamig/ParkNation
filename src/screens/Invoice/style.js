@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {font} from '../../assets/url/fontSizes';
-
+import colors from '../../constants/colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     },
     homeHeader: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         padding: 15,
         backgroundColor: '#fff',
@@ -27,10 +26,6 @@ const styles = StyleSheet.create({
     headerLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-    },
-    headerRight: {
-        flexDirection: 'row',
-        alignItems: 'end',
     },
     profileImage: {
         width: 35,
@@ -43,11 +38,11 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
 
-    profileTitle: {
-        fontSize: 12,
+    InvoiceTitle: {
+        fontSize: 18,
         color: '#1B1E25',
+        marginLeft: 25,
         fontFamily: font.RobotoMedium,
-        width:180
     },
     profileKey: {
         flexDirection: 'row',
@@ -141,28 +136,12 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         fontFamily: font.RobotoBold,
     },
-    paidText: {
-        backgroundColor: '#ECECEC',
-        paddingVertical: 4,
-        paddingHorizontal: 10,
-        borderRadius: 25,
-        textAlign: 'center',
-        fontSize: 8,
-        marginTop: 5,
-        color: '#878787',
-    },
-    streeksP: {
-        fontSize: 12,
-        color: '#878787',
-    },
+
+
     viewDetailBtn: {
         marginTop: 5,
     },
-    viewDetailBtnText: {
-        fontSize: 14,
-        color: '#101010',
-        fontFamily: font.RobotoBold,
-    },
+
 
     streeksBoxBottom: {
         borderTopWidth: 1,
@@ -215,38 +194,66 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         overflow:'hidden'
     },
-    logoBox: {
-        backgroundColor: '#1B1E25',
-        borderBottomEndRadius: 200,
-        borderBottomStartRadius: 200,
-        justifyContent: 'center',
+    invoiceBox: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+        flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 30,
-        paddingBottom: 100,
+        padding: 10,
+        margin: 10,
+        paddingTop:15,
+        paddingBottom:15
     },
-    imgTop:{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: -30,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
+    sha: {
+         elevation: 5,
+        shadowColor: 'red',
     },
-    payImage:{
-        width: 50,
-        height: 50,
+    row:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        flex:1,
     },
-    circle:{
-        backgroundColor:'white',
-        padding:10,
-        borderRadius: 40,
+    colPad:{
+        marginHorizontal:10,
+    },
+    cashingText:{
+        fontSize:12,
+        color:'#000',
+    },
+    dateText:{
+        fontSize:16,
+        color:'#000',
+        marginTop:5,
+        fontWeight: 'bold'
+    },
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+        paddingVertical: 45,
+        paddingHorizontal: 25,
+        width: '100%',
+        marginVertical: 10,
     },
     elevation: {
         elevation: 20,
-        shadowColor: 'red',
+        shadowColor: '#52006A',
     },
-
+    priceText:{
+        fontSize:16,
+        marginTop:5,
+        fontWeight: 'bold',
+        color: 'red',
+    },
+    imageBack:{
+        backgroundColor:colors.primary,
+        padding:10,
+        borderRadius:8,
+    },
+    HomedateText:{
+        fontSize:16,
+        color:'#000',
+        marginTop:5,
+    },
 
 });
 
