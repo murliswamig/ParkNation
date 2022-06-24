@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Image,
     SafeAreaView,
@@ -16,6 +16,17 @@ import Loader from "../../components/loader";
 
 
 const InvoiceDeatils = (props) => {
+
+    const [data, setInvoiceData] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            if (props.route.params) {
+                console.log("props", props.route.params);
+                setInvoiceData(props.route.params)
+            }
+        })();
+    }, []);
 
     const {width} = useWindowDimensions();
     const [loading, setLoading] = useState(false);
@@ -61,24 +72,24 @@ const InvoiceDeatils = (props) => {
                 <View style={InvoiceStyle.row}>
                     <View style={InvoiceStyle.colPad}>
                         <Text style={InvoiceStyle.cashingText}>{'Date of Service'}</Text>
-                        <Text style={InvoiceStyle.dateText}>{invoiceDate}</Text>
+                        <Text style={InvoiceStyle.dateText}>{data && data.invoice_title}</Text>
                     </View>
                 </View>
                 <View style={InvoiceStyle.colPad}>
-                    <Text style={[InvoiceStyle.priceText]}>${price.toFixed(2)}</Text>
+                    <Text style={[InvoiceStyle.priceText]}>${data && data.total}</Text>
                 </View>
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{padding: 10}}>
-                    <InvoiceItem title="Site" value='Sicklerville'/>
-                    <InvoiceItem title="Invoice Type" value='Month'/>
-                    <InvoiceItem title="Due Date" value='25/10/2022'/>
+                    <InvoiceItem title="Site" value={data && data.site_name}/>
+                    <InvoiceItem title="Invoice Type" value={data && data.invoice_type}/>
+                    <InvoiceItem title="Due Date" value={data && data.due_date}/>
                     <View style={{backgroundColor: 'grey', height: 1, margin: 10}}/>
 
-                    <InvoiceItem title="Total WO Tax" value='$120.00'/>
-                    <InvoiceItem title="Tax" value='$0.00'/>
-                    <InvoiceItem title="Discount" value='$25.00'/>
-                    <InvoiceItem title="service" value='$150.00'/>
+                    <InvoiceItem title="Total WO Tax" value={data && '$'+data.totalwotax}/>
+                    <InvoiceItem title="Tax" value={data && '$'+data.tax}/>
+                    <InvoiceItem title="Discount" value={data && '$'+data.discount_amt}/>
+                    <InvoiceItem title="service" value={data && '$'+data.service_amt}/>
                 </View>
 
             </ScrollView>

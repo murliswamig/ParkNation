@@ -1,13 +1,4 @@
-import changePasswordA from "../actions/auth/changePasswordA";
-import SubmitEmailA from "../actions/auth/SubmitEmailA";
-import userDetailsA from "../actions/userDetailsA";
-import allStreeksR from "../reducer/allStreeksR";
-import upcomingStreeksR from "../reducer/upcomingStreeksR";
-import myStreeksR from "../reducer/myStreeksR";
-import validAnswerR from "../reducer/validAnswerR";
-import contactR from "../reducer/contactR";
-import transactionHistoryR from "../reducer/transactionHistoryR";
-
+import InvoiceR from "../reducer/InvoiceR";
 
 export const SUCCESS = 'SUCCESS';
 export const LOADING = 'LOADING';
@@ -199,9 +190,9 @@ export const notificationLoading = 'notificationLoading';
 export const notificationSuccess = 'notificationSuccess';
 export const notificationError = 'notificationError';
 
-export const transactionLoading = 'transactionLoading';
-export const transactionSuccess = 'transactionSuccess';
-export const transactionError = 'transactionError';
+export const invoiceLoading = 'invoiceLoading';
+export const invoiceSuccess = 'invoiceSuccess';
+export const invoiceError = 'invoiceError';
 
 
 

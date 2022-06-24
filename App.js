@@ -97,7 +97,6 @@ export default function App() {
                     </RootStack.Navigator>
             </NavigationContainer>
             </AuthContext.Provider>
-            {/*{_renderModelView()}*/}
             <FlashMessage position="top" />
         </Provider>
     );

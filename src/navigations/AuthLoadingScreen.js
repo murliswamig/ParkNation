@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
-  image: { alignSelf: 'center',height:  sWidth * (150 / 375) ,width:sWidth * (180 / 375)  },
+  image: { alignSelf: 'center',height:  sWidth * (150 / 375) ,width:sWidth * (160 / 375)  },
   text: {
     textAlign: 'center',
     color: colors.primary,

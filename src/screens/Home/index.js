@@ -29,39 +29,24 @@ const Home = (props) => {
     const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState({});
     const [refreshing, setRefreshing] = useState(false);
-    const [userId, setUserId] = useState(false);
+    const [user, setUser] = useState({});
 
     const isFocused = useIsFocused();
     useEffect(() => {
         (async () => {
             let user = await AsyncStorage.getItem('user');
             let myUser = JSON.parse(user);
-            setUserId(myUser.id);
+            console.log("my user is ",user)
+            setUser(myUser.user);
         })();
     }, []);
-
-
-    useEffect(() => {
-        const userDetailsPath = props.HomeRes.userDetailsR;
-
-        if (userDetailsPath.status === LOADING) {
-            setLoading(true);
-        } else if (userDetailsPath.status === SUCCESS) {
-            console.log("sss", userDetailsPath)
-            setUserData(userDetailsPath.value.data.data);
-            setLoading(false);
-        } else if (userDetailsPath.status === ERROR) {
-            console.log("error", userDetailsPath)
-            setLoading(false);
-        }
-    }, [props.HomeRes]);
 
 
     const onRefresh = () => {
         setRefreshing(true);
     };
 
-    const RenderItem = ({title,price}) => {
+    const RenderItem = ({title='',price='$0.00'}) => {
         return (<TouchableOpacity onPress={() => {
             console.log("")
         }} style={{}}>
@@ -79,10 +64,9 @@ const Home = (props) => {
                         </View>
                     </View>
                     <View style={[invoiceStyle.colPad,{backgroundColor:'white'}]}>
-                        <Text style={[invoiceStyle.priceText,{color:'#000'}]}>${price.toFixed(2)}</Text>
+                        <Text style={[invoiceStyle.priceText,{color:'#000'}]}>${price}</Text>
                     </View>
                 </View>
-
             </View>
         </TouchableOpacity>)
     };
@@ -110,8 +94,8 @@ const Home = (props) => {
                 <TouchableOpacity onPress={() => {}}>
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <View style={styles.headerLeft}>
-                        {userData && userData.image ? <Image
-                                source={{uri: userData && userData.image && userData.image}}
+                        {user && user.image ? <Image
+                                source={{uri: user && user.image && user.image}}
                                 style={styles.profileImage}
                             /> :
                             <Image
@@ -125,7 +109,7 @@ const Home = (props) => {
                             <Text
                                 ellipsizeMode='tail'
                                 numberOfLines={1}
-                                style={styles.profileTitle}>{"Adom"}</Text>
+                                style={styles.profileTitle}>{user && user.first_name}</Text>
                         </View>
                     </View>
                         <View/>
@@ -165,8 +149,8 @@ const Home = (props) => {
 
                 <View style={{padding: 10}}>
                     <Text style={{margin:10}}>SUMMARY</Text>
-                    <RenderItem title="Total Invoices" price={200}/>
-                    <RenderItem title="Paid Amount" price={2400}/>
+                    <RenderItem title="Total Invoices" price={user && user.total_invoices}/>
+                    <RenderItem title="Paid Amount" price={user && user.total_balance_amount}/>
                 </View>
 
             </ScrollView>
@@ -185,9 +169,6 @@ const mapStateToProps = (state /*, ownProps*/) => {
 const mapDispatchToProps = dispatch => {
     return {
         defaultRequest: () => {
-
-        },
-        userDetailsRequest: (user_id) => {
 
         },
     };

@@ -1,7 +1,7 @@
 const apiName = {
     signup: 'sign-up',
-    login: 'login',
-    verifyOTP: 'verify-otp',
+    login: 'reactlogin',
+    invoice: 'sql/execSP/',
     resendOTP: 'resendOtp',
     forgotPassword: 'forget-password',
     resetPassword: 'reset-password',
@@ -27,7 +27,7 @@ const apiName = {
 };
 export default apiName;
 
-export const BASEURL = 'https://streekey.devtechnosys.info/api/';
+export const BASEURL = 'https://api.parknation.org/';
 export const gSignInWebClientId = '734986521018-ak16erk2lg9a475q714a6if5g45b32ph.apps.googleusercontent.com';
 //export const gSignInWebClientId = '1075701674227-nfnv2849u2vqhkc6tvs35hfmq60up0ji.apps.googleusercontent.com';
 export const gSignInIosClientId = '1075701674227-9hsgepfqmib49hoa3gs43jb5hjt5pis1.apps.googleusercontent.com';

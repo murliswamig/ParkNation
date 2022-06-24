@@ -21,6 +21,13 @@ import { AuthContext } from "../../context/AuthContext";
 import colors from "../../constants/colors";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import AppButton from "../../components/AppButton";
+import loginA from "../../redux/actions/auth/loginA";
+
+const configurationObject = {
+    url: 'https://api.parknation.org/reactlogin',
+    method: "POST",
+    data: {'name':'nandu@parknation.org','password':'test'},
+};
 
 const Login = (props) => {
 
@@ -29,9 +36,9 @@ const Login = (props) => {
     });
 
     const [isSelected, setSelection] = useState(false);
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('nandu@parknation.org');
     const [emailError, setEmailError] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('test');
     const [passwordError, setPasswordError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -48,58 +55,21 @@ const Login = (props) => {
         const loginRes = props.loginRes.loginR;
         const checkSoPath = props.loginRes.checkSocialLoginR;
         const updateProfilePath = props.loginRes.updateProfileR;
-
+         console.log("loginRes update",loginRes)
         if (loginRes.status === LOADING) {
-            //setState({...state,loading:true});
             setLoading(true)
         } else if (loginRes.status === SUCCESS) {
             console.log('the response of login is ', loginRes.value)
             setState({ ...state, loading: false });
             setLoading(false);
             state.loading = false;
-
-            if (loginRes.value.status === "error") {
-                let response = loginRes && loginRes.value;
-                console.log("loginRes response ", response.message)
-                showDangerToast(response.message);
-                // errorHandle(loginRes)
-                setLoading(false);
-                props.defaultRequest();
-            } else if (loginRes.value.status === "success") {
-
-                if (loginRes.value.data.is_verified === 0) {
-                    console.log("is_verified", loginRes.value.data.is_verified, props)
-                    props.navigation.navigate('Verification', { email: email })
-                } else if (loginRes.value.data.is_verified === 1) {
-                    login(loginRes.value.data)
-                }
-                showToast(loginRes.value.message);
-                props.defaultRequest();
-            }
+            showToast(loginRes.value.message);           
+            login(loginRes.value)
         } else if (loginRes.status === ERROR) {
             setLoading(false);
-            console.log('login error message', loginRes.error.data.message);
-            showDangerToast(loginRes.error.data.message)
-            props.defaultRequest();
-        } else if (checkSoPath.status === LOADING) {
-            setLoading(true);
-        } else if (checkSoPath.status === SUCCESS) {
-            setLoading(false);
-            console.log("checkSoPath", checkSoPath);
-            if (checkSoPath.value.data.status === "success") {
-                console.log("user data", checkSoPath.value.data.data)
-                showToast(checkSoPath.value.data.message);
-                login(checkSoPath.value.data.data)
-            }
-        } else if (checkSoPath.status === ERROR) {
-            setLoading(false);
-        }else if(updateProfilePath.status === LOADING){
-            setLoading(true);
-        }else if(updateProfilePath.status === SUCCESS){
-            console.log("updateProfilePath",updateProfilePath)
-            setLoading(false);
-        }else if(updateProfilePath.status === ERROR){
-            setLoading(false);
+            state.loading = false;
+            console.log('login error message', loginRes.error);
+            showDangerToast(loginRes.error)
         }
 
     }, [props.loginRes]);
@@ -108,12 +78,12 @@ const Login = (props) => {
     const checkValidation = () => {
         console.log("email", email)
         var emailReq = validate('email', email);
-        var passwordReq = validate('password', password);
+        //var passwordReq = validate('password', password);
         console.log("email error", emailReq)
-        console.log("passwordReq", passwordReq)
-        if (emailReq || passwordReq) {
+       // console.log("passwordReq", passwordReq)
+        if (emailReq || '') {
             setEmailError(emailReq);
-            setPasswordError(passwordReq);
+           // setPasswordError(passwordReq);
             return false;
         } else {
             return true;
@@ -124,16 +94,17 @@ const Login = (props) => {
         setPasswordError('');
     }
 
+
     const loginButtonPressed = async () => {
         clearError()
         if (!checkValidation()) {
             return;
         }
-        console.log("Login")
-        login({email:email})
-        //props.navigation.navigate('Home')
-        //props.loginRequest(email, password, device_type, global.fcmToken, device_id);
+        props.loginRequest(email, password);
     }
+
+
+
 
     return (
         <SafeAreaView style={styles.bg}>
@@ -241,8 +212,9 @@ const mapStateToProps = (state /*, ownProps*/) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loginRequest: (email, password, device_type, fcmToken, device_id) => {
-            //dispatch(loginA(email, password, device_type, fcmToken, device_id));
+        loginRequest: (email, password) => {
+            console.log("api data",email, password)
+            dispatch(loginA(email, password));
         },
         checkSocialLoginRequest: (type, social_id,name,email,device_id,device_type) => {
             //dispatch(checkSocialLoginA(type, social_id,name,email,device_id,device_type));

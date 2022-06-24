@@ -3,12 +3,12 @@ import { BASEURL, } from '../constants/apiName';
 
 export const postService = async (urlAction, params) => {
   let ServiceUrl = BASEURL + urlAction;
-  console.log('ServiceUrl', ServiceUrl);
-  let token = global.token == undefined ? '' : global.token;
-  let headers = {
+
+   let headers = {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
+    'Accept':'application/json'
   };
+
   // console.log('in post service the data is ', ServiceUrl, token, headers)
   return new Promise(function (resolve, reject) {
     axios({
@@ -19,7 +19,7 @@ export const postService = async (urlAction, params) => {
       headers: headers,
     })
       .then(async (reponse) => {
-        console.log("token",token,"data reponse---->",ServiceUrl,reponse)
+        console.log("token---","data reponse---->",ServiceUrl,reponse)
         resolve(reponse);
       })
       .catch((error) => {

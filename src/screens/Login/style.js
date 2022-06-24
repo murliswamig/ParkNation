@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   logoImage: {
-    width: 200,
-    height: 200,
+    width: 160,
+    height: 160,
   },
   formBg: {
     padding: 30,
