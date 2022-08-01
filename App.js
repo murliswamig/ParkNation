@@ -15,6 +15,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthLoadingScreen from "./src/navigations/AuthLoadingScreen";
 import AuthStack from "./src/navigations/AuthStack";
 import HomeStack from "./src/navigations/homeStack";
+import {LogBox} from "react-native";
 
 
 const RootStack = createStackNavigator();
@@ -27,6 +28,8 @@ export default function App() {
 
 
     React.useEffect(() => {
+
+        LogBox.ignoreAllLogs(true);
         setTimeout(() => {
             ///SplashScreen.hide();
         }, 2000);

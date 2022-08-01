@@ -7,6 +7,13 @@ install! 'cocoapods', :deterministic_uuids => false
 target 'ParkNation' do
   config = use_native_modules!
 
+
+#  permisson
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Contacts', :path => "#{permissions_path}/Contacts"
+
+
+
   # Flags change depending on the env values.
   flags = get_default_flags()
 

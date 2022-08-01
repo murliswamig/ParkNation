@@ -41,24 +41,7 @@ const Home = (props) => {
     useEffect(()=>{
         const userDetailsPath = props.HomeRes.userDetailsR;
 
-        if(userDetailsPath.status===LOADING){
-            setLoading(true);
-        }else if(userDetailsPath.status===SUCCESS){
-            console.log("sss",userDetailsPath)
-            setUserData(userDetailsPath.value.data.data);
-            setLoading(false);
-        }else if(userDetailsPath.status===ERROR){
-            console.log("error",userDetailsPath)
-            setLoading(false);
-        }
     },[props.HomeRes]);
-
-
-
-    const onRefresh = () => {
-        setRefreshing(true);
-    };
-
 
 
     const handleTab=(tabValue)=>{
